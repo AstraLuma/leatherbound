@@ -68,19 +68,15 @@
   </script>
 </polymer-element>
 
-<polymer-element name="leatherbound-entry">
+<polymer-element name="leatherbound-entry" extends="paper-shadow">
   <template>
     <style>
-    paper-shadow {
+    :host {
       background: white;
-    }
-    paper-shadow {
       padding: 1em; 
     }
     </style>
-    <paper-shadow>
-      <content></content>
-    </paper-shadow>
+    <shadow></shadow>
   </template>
   <script>
 

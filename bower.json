@@ -25,6 +25,7 @@
     "paper-dropdown": "Polymer/paper-dropdown#~0.5.2",
     "paper-icon-button": "Polymer/paper-icon-button#~0.5.2",
     "paper-item": "Polymer/paper-item#~0.5.2",
-    "paper-menu-button": "Polymer/paper-menu-button#~0.5.2"
+    "paper-menu-button": "Polymer/paper-menu-button#~0.5.2",
+    "paper-shadow": "astronouth7303/paper-shadow#~0.5.2"
   }
 }
