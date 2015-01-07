@@ -6,9 +6,10 @@
 <link rel="import" href="/components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="/components/paper-item/paper-item.html">
 <link rel="import" href="/components/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="/components/paper-ripple/paper-ripple.html">
 <link rel="import" href="/components/paper-shadow/paper-shadow.html">
 
-<polymer-element name="leatherbound-entries" noscript>
+<polymer-element name="leatherbound-entries">
   <template>
     <style>
     paper-shadow {
@@ -22,39 +23,51 @@
     #prev, #next {
       display: block;
       width: calc(100% - 4em - 36px);
-      height: 2em;
+      height: 1.5em;
       position: absolute;
+      transition: height 0.5s;
+    }
+
+    #prev:hover, #next:hover {
+      height: 2em;
+      transition: height 0.5s;
     }
 
     #prev {
-      top: -1em;
+      top: 0em;
     }
 
     #next {
       bottom: 0em;
     }
 
-    :host[last] #next {
-      display: none;
-    }
-
-    :host[first] #prev {
-      display: none;
-    }
-
     #entries {
-      margin-top: 2em;
+      margin-top: 2.5em;
     }
     </style>
-    <paper-shadow id="prev"></paper-shadow>
+    <a href="{{prev}}" on-click="nonav" on-mouseup="nonav" title="Previous Entry">
+      <paper-shadow id="prev"><paper-ripple fit></paper-ripple></paper-shadow>
+    </a>
     <div id="entries">
       <content></content>
     </div>
-    <paper-shadow id="next"></paper-shadow>
+    <a href="{{next}}" on-click="nonav" on-mouseup="nonav" title="Next Entry">
+      <paper-shadow id="next"><paper-ripple fit></paper-ripple></paper-shadow>
+    </a>
   </template>
+  <script>
+
+    Polymer({
+      nonav: function(evt, detail, sender) {
+        console.log(evt, detail, sender);
+        evt.preventDefault();
+      }
+    });
+
+  </script>
 </polymer-element>
 
-<polymer-element name="leatherbound-entry" noscript>
+<polymer-element name="leatherbound-entry">
   <template>
     <style>
     paper-shadow {
@@ -68,6 +81,13 @@
       <content></content>
     </paper-shadow>
   </template>
+  <script>
+
+    Polymer({
+      
+    });
+
+  </script>
 </polymer-element>
 
 <polymer-element name="leatherbound-app">
@@ -99,7 +119,8 @@
     </paper-menu-button>
     <leatherbound-entries last>
       <leatherbound-entry>
-        <h1>2014-5-6 &ndash; (Title)</h1>
+        <h1>2014-5-6 &ndash; Lorem Ipsum</h1>
+        <p>Dear Diary,</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus dictum sem, sit amet porta eros pulvinar ac. Phasellus fringilla nisi ante, eu vestibulum lacus sollicitudin a. Aenean at condimentum sem, et tincidunt nibh. Morbi at purus nisl. Aliquam non urna vitae est facilisis hendrerit. Vestibulum vulputate quis nisl molestie hendrerit. In hac habitasse platea dictumst.</p>
 
         <p>Aliquam a rutrum nibh, eu blandit nulla. Donec at ipsum vel metus dapibus fringilla. Mauris bibendum, turpis eget lobortis posuere, libero ex semper libero, pharetra lacinia augue velit vel magna. In hac habitasse platea dictumst. Proin pellentesque, odio ut lacinia mattis, odio nisi maximus nisi, vitae lacinia tortor diam vitae nunc. Pellentesque enim nulla, ornare vel egestas ac, ornare eget dolor. Donec condimentum felis eu diam pulvinar feugiat. Integer cursus nisi id odio placerat, ac feugiat odio vehicula. In magna tortor, placerat id mauris sed, vehicula tempus metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tellus nulla, volutpat id rutrum et, laoreet eget justo. Mauris ornare turpis vitae enim accumsan bibendum.</p>
