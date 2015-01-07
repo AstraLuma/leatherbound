@@ -6,13 +6,40 @@
     <script src="components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="import" href="leatherbound.html">
     <style>
-    body {
-      margin: 0;
-      padding: 0;
-    }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #ddd;
+      }
+      paper-menu-button {
+        position: static;
+        top: 1em;
+        left: 1em;
+      }
+      leatherbound-entries {
+      }
     </style>
   </head>
   <body>
-    <leatherbound-app></leatherbound-app>
+    <paper-menu-button>
+      <paper-icon-button icon="menu" id="paper_icon_button"></paper-icon-button>
+      <paper-dropdown class="dropdown">
+        <core-menu class="menu">
+          <paper-button id="archive" ><core-icon icon="folder" ></core-icon> Archive</paper-item>
+          <paper-button id="settings"><core-icon icon="settings"></core-icon> Settings</paper-item>
+        </core-menu>
+      </paper-dropdown>
+    </paper-menu-button>
+    <leatherbound-entries last>
+      <leatherbound-entry>
+        <h1>2014-5-6 &ndash; Lorem Ipsum</h1>
+        <p>Dear Diary,</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque cursus dictum sem, sit amet porta eros pulvinar ac. Phasellus fringilla nisi ante, eu vestibulum lacus sollicitudin a. Aenean at condimentum sem, et tincidunt nibh. Morbi at purus nisl. Aliquam non urna vitae est facilisis hendrerit. Vestibulum vulputate quis nisl molestie hendrerit. In hac habitasse platea dictumst.</p>
+
+        <p>Aliquam a rutrum nibh, eu blandit nulla. Donec at ipsum vel metus dapibus fringilla. Mauris bibendum, turpis eget lobortis posuere, libero ex semper libero, pharetra lacinia augue velit vel magna. In hac habitasse platea dictumst. Proin pellentesque, odio ut lacinia mattis, odio nisi maximus nisi, vitae lacinia tortor diam vitae nunc. Pellentesque enim nulla, ornare vel egestas ac, ornare eget dolor. Donec condimentum felis eu diam pulvinar feugiat. Integer cursus nisi id odio placerat, ac feugiat odio vehicula. In magna tortor, placerat id mauris sed, vehicula tempus metus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras tellus nulla, volutpat id rutrum et, laoreet eget justo. Mauris ornare turpis vitae enim accumsan bibendum.</p>
+
+        <p>Quisque a sagittis nisl, nec ultrices elit. Interdum et malesuada fames ac ante ipsum primis in faucibus. Quisque orci metus, consequat vel augue at, dictum volutpat justo. Praesent egestas nec diam quis facilisis. Praesent finibus orci non sem dapibus lobortis. Donec justo libero, rhoncus vitae lobortis a, lobortis a dui. Proin posuere odio risus, id imperdiet enim accumsan in. Curabitur vulputate sodales urna id eleifend. Integer tincidunt lobortis enim sed fermentum. Cras accumsan non augue fermentum congue. Integer egestas turpis sit amet viverra molestie.</p>
+      </leatherbound-entries>
+    </section>  
   </body>
 </html>
