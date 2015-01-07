@@ -1,0 +1,30 @@
+{
+  "name": "leatherbound",
+  "version": "0.0.0",
+  "homepage": "https://github.com/astronouth7303/leatherbound",
+  "authors": [
+    "Jamie Bliss <astronouth7303@gmail.com>"
+  ],
+  "description": "Diary Software",
+  "license": "Affero GPL v3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.5.2",
+    "core-icons": "Polymer/core-icons#~0.5.2",
+    "core-item": "Polymer/core-item#~0.5.2",
+    "core-menu": "Polymer/core-menu#~0.5.2",
+    "paper-button": "Polymer/paper-button#~0.5.2",
+    "paper-dropdown": "Polymer/paper-dropdown#~0.5.2",
+    "paper-icon-button": "Polymer/paper-icon-button#~0.5.2",
+    "paper-item": "Polymer/paper-item#~0.5.2",
+    "paper-menu-button": "Polymer/paper-menu-button#~0.5.2"
+  }
+}
