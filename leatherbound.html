@@ -45,13 +45,13 @@
       margin-top: 2.5em;
     }
     </style>
-    <a href="{{prev}}" on-click="nonav" on-mouseup="nonav" title="Previous Entry">
+    <a href="{{prev}}" on-click="{{nonav}}" title="Previous Entry">
       <paper-shadow id="prev"><paper-ripple fit></paper-ripple></paper-shadow>
     </a>
     <div id="entries">
       <content></content>
     </div>
-    <a href="{{next}}" on-click="nonav" on-mouseup="nonav" title="Next Entry">
+    <a href="{{next}}" on-click="{{nonav}}" title="Next Entry">
       <paper-shadow id="next"><paper-ripple fit></paper-ripple></paper-shadow>
     </a>
   </template>
