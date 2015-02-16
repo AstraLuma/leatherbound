@@ -2,3 +2,4 @@
 *.pyc
 *.pyo
 lib/
+local.mk
