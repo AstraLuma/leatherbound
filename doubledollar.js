@@ -83,21 +83,21 @@ var $$ = {};
  * Create an element, returning it.
  */
 $$.createElement = function(tag, attrs, children) {
-	var ele = document.createElement(tag);
+    var ele = document.createElement(tag);
 
-	if (attrs) {
-		for(a in attrs) {
-			ele.setAttribute(a, attrs[a]);
-		}
-	}
+    if (attrs) {
+        for(a in attrs) {
+            ele.setAttribute(a, attrs[a]);
+        }
+    }
 
-	if (children) {
-		children.forEach(function(kid) {
-			ele.appendChild(kid);
-		});
-	}
+    if (children) {
+        children.forEach(function(kid) {
+            ele.appendChild(kid);
+        });
+    }
 
-	return ele;
+    return ele;
 };
 
 /// Shortcut for $$.createElement().
@@ -107,7 +107,7 @@ $$.e = $$.createElement;
  * Creates a text node, returning it.
  */
 $$.createText = function(txt) {
-	return document.createTextNode(txt);
+    return document.createTextNode(txt);
 };
 
 /// Shortcut for $$.createText().
@@ -122,22 +122,22 @@ $$.t = $$.createText;
  *  - $$.query(expr) to search the main Document
  */
 $$.query = function(ele, expr) {
-	var nl;
-	if (!expr) {
-		// ele is actually the expression
-		expr = ele;
-		ele = document;
-	}
-	nl = ele.querySelectorAll(expr);
+    var nl;
+    if (!expr) {
+        // ele is actually the expression
+        expr = ele;
+        ele = document;
+    }
+    nl = ele.querySelectorAll(expr);
 
 
-	// NodeLists are super lame to work with. Hopefully, this copy isn't too bad.
-	var rv = new Array(nl.length);
-	for (var i = 0; i < nl.length; i++) {
-		rv[i] = nl.item(i);
-	}
+    // NodeLists are super lame to work with. Hopefully, this copy isn't too bad.
+    var rv = new Array(nl.length);
+    for (var i = 0; i < nl.length; i++) {
+        rv[i] = nl.item(i);
+    }
 
-	return rv;
+    return rv;
 };
 
 /// Shortcut for $$.query
@@ -152,12 +152,12 @@ $$.q = $$.query;
  * Note: This uses the document of the original element.
  */
 $$.empty2fragment = function(ele) {
-	var df = ele.ownerDocument.createDocumentFragment();
-	// Waaaay too side-effect heavy for my taste, but compact and hopefully efficient.
-	while(ele.firstChild) {
-		df.appendChild(ele.firstChild);
-	}
-	return df;
+    var df = ele.ownerDocument.createDocumentFragment();
+    // Waaaay too side-effect heavy for my taste, but compact and hopefully efficient.
+    while(ele.firstChild) {
+        df.appendChild(ele.firstChild);
+    }
+    return df;
 };
 
 /** }}} **/
@@ -183,81 +183,81 @@ $$.empty2fragment = function(ele) {
  * the status code. It is rejected if the request fails.
  */
 $$.ajax = function(method, url, options) {
-	return new Promise(function(resolve, reject) {
-		var xhr = new XMLHttpRequest();
-		method = method.toUpperCase();
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        method = method.toUpperCase();
 
-		if (options.params) {
-			url += (url.indexOf('?') > 0 ? '&' : '?') + options.params;
-		}
+        if (options.params) {
+            url += (url.indexOf('?') > 0 ? '&' : '?') + options.params;
+        }
 
-		xhr.open(method, url, true);
+        xhr.open(method, url, true);
 
-		if (options.responseType) {
-			xhr.responseType = options.responseType;
-		}
-		if (options.withCredentials) {
-			xhr.withCredentials = true;
-		}
+        if (options.responseType) {
+            xhr.responseType = options.responseType;
+        }
+        if (options.withCredentials) {
+            xhr.withCredentials = true;
+        }
 
-		if (options.headers) {
-			for (h in object.headers) {
-				xhr.setRequestHeader(h, object.headers[h]);
-			}
-		}
+        if (options.headers) {
+            for (h in object.headers) {
+                xhr.setRequestHeader(h, object.headers[h]);
+            }
+        }
 
-		if (options.progress) {
-			xhr.addEventListener("progress", options.progress, false);
-		}
+        if (options.progress) {
+            xhr.addEventListener("progress", options.progress, false);
+        }
 
-		xhr.addEventListener("load", function() {
-			resolve(xhr);
-		}, false);
-		
-		xhr.addEventListener("error", function() {
-			reject(xhr);
-		}, false);
-		
-		xhr.addEventListener("abort", function() {
-			reject(xhr);
-		}, false);
+        xhr.addEventListener("load", function() {
+            resolve(xhr);
+        }, false);
+        
+        xhr.addEventListener("error", function() {
+            reject(xhr);
+        }, false);
+        
+        xhr.addEventListener("abort", function() {
+            reject(xhr);
+        }, false);
 
-		xhr.addEventListener("timeout", function() {
-			reject(xhr);
-		}, false);
+        xhr.addEventListener("timeout", function() {
+            reject(xhr);
+        }, false);
 
-		body = options.body;
-		if ($$.isPlainObject(options.body)) {
-			body = new FormData();
-			for (f in object.body) {
-				body.append(f, object.body[f]);
-			}
-		}
+        body = options.body;
+        if ($$.isPlainObject(options.body)) {
+            body = new FormData();
+            for (f in object.body) {
+                body.append(f, object.body[f]);
+            }
+        }
 
-		xhr.send(body);
-	});
+        xhr.send(body);
+    });
 };
 
 /**
  * Shortcut to execute a GET.
  */
 $$.get = function(url, params, options) {
-	if (!options) {
-		options = {};
-	}
-	options.params = params;
-	return $$.ajax('GET', url, options);
+    if (!options) {
+        options = {};
+    }
+    options.params = params;
+    return $$.ajax('GET', url, options);
 };
 
 /**
  * Shortcut to execute a POST
  */
 $$.post = function(url, body, options) {
-	if (!options) {
-		options = {};
-	}
-	options.body = body;
-	return $$.ajax('POST', url, options);
+    if (!options) {
+        options = {};
+    }
+    options.body = body;
+    return $$.ajax('POST', url, options);
 };
 
 // Not including PUT, DELETE, or others because the precise requests are heavily customized
@@ -265,45 +265,45 @@ $$.post = function(url, body, options) {
 /** {{{ JSON Requests **/
 
 $$.json = {
-	get: function(url, params, options) {
-		if (!options) {
-			options = {};
-		}
-		options.params = params;
-		options.responseType = "json";
-		return $$.ajax('GET', url, options);
-	},
-	post: function(url, body, options) {
-		if (!options) {
-			options = {};
-		}
-		if (!options.headers) {
-			options.headers = {};
-		}
-		options.body = JSON.stringify(body);
-		options.headers['Content-Type'] = 'application/json';
-		options.responseType = "json";
-		return $$.ajax('POST', url, options);
-	},
-	put: function(url, body, options) {
-		if (!options) {
-			options = {};
-		}
-		if (!options.headers) {
-			options.headers = {};
-		}
-		options.body = JSON.stringify(body);
-		options.headers['Content-Type'] = 'application/json';
-		options.responseType = "json";
-		return $$.ajax('PUT', url, options);
-	},
-	delete: function(url, options) {
-		if (!options) {
-			options = {};
-		}
-		options.responseType = "json";
-		return $$.ajax('DELETE', url, options);
-	}
+    get: function(url, params, options) {
+        if (!options) {
+            options = {};
+        }
+        options.params = params;
+        options.responseType = "json";
+        return $$.ajax('GET', url, options);
+    },
+    post: function(url, body, options) {
+        if (!options) {
+            options = {};
+        }
+        if (!options.headers) {
+            options.headers = {};
+        }
+        options.body = JSON.stringify(body);
+        options.headers['Content-Type'] = 'application/json';
+        options.responseType = "json";
+        return $$.ajax('POST', url, options);
+    },
+    put: function(url, body, options) {
+        if (!options) {
+            options = {};
+        }
+        if (!options.headers) {
+            options.headers = {};
+        }
+        options.body = JSON.stringify(body);
+        options.headers['Content-Type'] = 'application/json';
+        options.responseType = "json";
+        return $$.ajax('PUT', url, options);
+    },
+    delete: function(url, options) {
+        if (!options) {
+            options = {};
+        }
+        options.responseType = "json";
+        return $$.ajax('DELETE', url, options);
+    }
 };
 
 /** }}} **/
@@ -318,18 +318,18 @@ $$.json = {
  * Use cases include implementing timeouts with Promise.race().
  */
 $$.timeout = function(ms, reason) {
-	return new Promise(function(resolve, reject) {
-		window.setTimeout(reject, ms, reason);
-	});
+    return new Promise(function(resolve, reject) {
+        window.setTimeout(reject, ms, reason);
+    });
 };
 
 /**
  * Resolve a promise after a delay (in milliseconds).
  */
 $$.delay = function(ms, result) {
-	return new Promise(function(resolve, reject) {
-		window.setTimeout(resolve, ms, result);
-	});
+    return new Promise(function(resolve, reject) {
+        window.setTimeout(resolve, ms, result);
+    });
 };
 
 /**
@@ -339,7 +339,7 @@ $$.delay = function(ms, result) {
  * instead of using window.setTimeout(0, ...).
  */
 $$.immediate = function() {
-	return Promise.resolve();
+    return Promise.resolve();
 };
 
 /** }}} */
@@ -353,9 +353,9 @@ $$.immediate = function() {
  *(Promise-based wrapper around window.requestAnimationFrame.)
  */
 $$.frame = function() {
-	return new Promise(function(resolve, reject) {
-		window.requestAnimationFrame(resolve);
-	});
+    return new Promise(function(resolve, reject) {
+        window.requestAnimationFrame(resolve);
+    });
 }
 
 /**
@@ -367,16 +367,16 @@ $$.frame = function() {
  * - options: A PositionOptions object.
  */
 $$.location = function(options) {
-	return new Promise(function(resolve, reject) {
-		navigator.geolocation.getCurrentPosition(resolve, reject, options);
-	});
+    return new Promise(function(resolve, reject) {
+        navigator.geolocation.getCurrentPosition(resolve, reject, options);
+    });
 }
 
 /** }}} **/
 
 /** {{{ Utilities **/
 $$.isPlainObject = function (o) {
-	// From https://stackoverflow.com/questions/5876332/how-can-i-differentiate-between-an-object-literal-other-javascript-objects
-	return typeof o == 'object' && o.constructor == Object;
+    // From https://stackoverflow.com/questions/5876332/how-can-i-differentiate-between-an-object-literal-other-javascript-objects
+    return typeof o == 'object' && o.constructor == Object;
 };
 /** }}} **/
