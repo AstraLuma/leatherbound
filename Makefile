@@ -1,8 +1,8 @@
 include local.mk
 
-.PHONY: all
-all:
-	echo "Try deps or upload"
+.PHONY: dev
+dev:
+	dev_appserver.py .
 
 .PHONY: deps
 deps:
